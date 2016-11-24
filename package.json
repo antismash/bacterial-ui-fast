@@ -1,0 +1,43 @@
+{
+  "name": "antismash-bacterial-ui",
+  "version": "4.0.0",
+  "description": "A web UI for antiSMASH",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/antismash/bacterial-ui.git"
+  },
+  "keywords": [
+    "antiSMASH"
+  ],
+  "author": "Kai Blin <kblin@biosustain.dtu.dk>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/antismash/bacterial-ui/issues"
+  },
+  "homepage": "https://github.com/antismash/bacterial-ui#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-jasmine": "^2.4.0",
+    "gulp-less": "^3.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4",
+    "http-proxy-middleware": "^0.16.0",
+    "jasmine": "^2.4.1",
+    "karma": "^1.1.1",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-coverage": "^1.1.0",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "lite-server": "^2.2.0"
+  },
+  "dependencies": {
+    "bower-npm-resolver": "^0.4.0"
+  }
+}

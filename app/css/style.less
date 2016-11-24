@@ -1,0 +1,404 @@
+@antismash-red: #810e15;
+@dark-gray: #444;
+@antismash-gray: #1d1414;
+@medium-gray: #444;
+@light-gray: #eee;
+@light-red: #aa0000;
+@tooltip-border: slategray;
+@tooltip-background: #ddd;
+// svgene genetype colors
+@gene-type-other: gray;
+@gene-type-biosynthetic: @antismash-red;
+@gene-type-regulatory: seagreen;
+@gene-type-transport: cornflowerblue;
+
+.wide-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  @media (min-width: 768px){
+    width: 750px;
+  }
+  @media (min-width: 992px){
+    width: 970px;
+  }
+  @media (min-width: 1200px){
+    width: 1170px;
+  }
+  @media (min-width: 1600px){
+    width: 1560px;
+  }
+}
+
+.navbar-antismash {
+  border-bottom: 4px solid @antismash-red;
+}
+
+.fake-button {
+  color: @dark-gray;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.cluster-view {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.cluster-header{
+  font-size: 90%;
+  background-color: @antismash-red;
+  color: white;
+  margin: 0.1em 0 0.4em 0.1em;
+  padding: 0.2em 0 0.2em 1em;
+  border-radius: 3px;
+}
+
+.cluster-download {
+  display: block;
+  float: right;
+}
+
+.spacer{
+  margin: 0.5em;
+}
+
+.search-box {
+  padding-top: 2em;
+}
+
+.search-button {
+  padding-top: 2em;
+}
+
+.cluster-list {
+  cursor: pointer;
+}
+
+.stats-top {
+  background-color: @light-gray;
+}
+
+.stats-definition-term {
+  font-weight: bold;
+}
+
+.stats-definition-data {
+  font-weight: bold;
+  float: right;
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  height: 160px;
+  padding-top: 0.25em;
+  border-top: 1px solid @antismash-red;
+  margin-top: 2em;
+}
+
+.org-logos {
+  margin-top: 1em;
+}
+
+.cite-me {
+  margin-top: 1em;
+}
+
+.digits {
+  text-align: right;
+}
+
+.cluster-type {
+  text-align: center;
+}
+
+.pattern-list {
+  margin: 1em 0;
+  padding: 2em 1em;
+  border-radius: 8px;
+  border: 1px dashed @dark-gray;
+}
+
+.query-operation {
+  list-style: none;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  background-color: @light-gray;
+}
+
+.pad-left-1{
+  padding-left: 1em;
+}
+
+.jstree-container {
+  overflow-y: auto;
+  @media (min-height: 500px) {
+    max-height: 200px;
+  }
+  @media (min-height: 750px) {
+    max-height: 450px;
+  }
+  @media (min-height: 1000px) {
+    max-height: 750px;
+  }
+}
+
+
+.secmet (@fg: black, @bg: white) {
+    background-color: @bg;
+    color: @fg;
+    a {
+        color: @fg;
+    }
+}
+
+.pks {
+    .secmet(purple, sandybrown);
+}
+
+.pigment {
+    .secmet(white, sienna);
+}
+
+.hydrocarbon {
+    .secmet(white, purple);
+}
+
+.ripp {
+    .secmet(white, royalblue);
+}
+
+.putative {
+    .secmet(black, #f2f2f2);
+}
+
+.t1pks {
+    .pks;
+}
+
+.transatpks {
+    .pks;
+}
+
+.t2pks {
+    .pks;
+}
+
+.t3pks {
+    .pks;
+}
+
+.otherks {
+    .pks;
+}
+
+.arylpolyene {
+    .pigment;
+}
+
+.resorcinol {
+    .hydrocarbon;
+}
+
+.ladderane {
+    .hydrocarbon;
+}
+
+.pufa {
+    .hydrocarbon;
+}
+
+.nrps {
+    .secmet(white, seagreen);
+}
+
+.terpene {
+    .hydrocarbon;
+}
+
+.lantibiotic {
+    .secmet(blue, #ffff77);
+}
+
+.lantipeptide {
+    .lantibiotic
+}
+
+.bacteriocin {
+    .ripp;
+}
+
+.thiopeptide {
+    .secmet(black, gold);
+}
+
+.linaridin {
+    .ripp;
+}
+
+.cyanobactin {
+    .ripp;
+}
+
+.glycocin {
+    .ripp;
+}
+
+.lap {
+    .ripp;
+}
+
+.lassopeptide {
+    .ripp;
+}
+
+.sactipeptide {
+    .ripp;
+}
+
+.bottromycin {
+    .ripp;
+}
+
+.head_to_tail {
+    .ripp;
+}
+
+.microcin {
+    .ripp;
+}
+
+.microviridin {
+    .ripp;
+}
+
+.proteusin {
+    .ripp;
+}
+
+.blactam {
+    .secmet(black, aliceblue);
+}
+
+.amglyccycl {
+    .secmet(black, yellowgreen);
+}
+
+.aminocoumarin {
+    .secmet(black, yellowgreen);
+}
+
+.siderophore {
+    .secmet(white, crimson);
+}
+
+.ectoine {
+    .secmet(firebrick, yellowgreen);
+}
+
+.butyrolactone {
+    .secmet(white, mediumpurple);
+}
+
+.indole {
+    .secmet(black, peachpuff);
+}
+
+.nucleoside {
+    .secmet(black, antiquewhite);
+}
+
+.phosphoglycolipid {
+    .secmet(black, yellowgreen);
+}
+
+.melanin {
+    .pigment;
+}
+
+.oligosaccharide {
+    .secmet(black, burlywood);
+}
+
+.furan {
+    .hydrocarbon;
+}
+
+.hserlactone{
+    .secmet(black, tan);
+}
+
+.phenazine {
+    .secmet(black, plum);
+}
+
+.phosphonate {
+    .secmet(black, mediumaquamarine);
+}
+
+.fused {
+    .ripp;
+}
+
+.other {
+    .secmet(lightsteelblue, midnightblue);
+}
+
+.cf_saccharide {
+    .putative;
+}
+
+.cf_fatty_acid {
+    .putative;
+}
+
+.hybrid {
+    .secmet(midnightblue, lightsteelblue);
+}
+
+.tooltip {
+    border: 2px solid @tooltip-border;
+    background-color: @tooltip-background;
+    display: none;
+    position: absolute;
+    font-size: 80%;
+    padding: 0.5em;
+    color: @antismash-red;
+}
+
+.svgene-type-other {
+    fill: @gene-type-other;
+    stroke: black;
+}
+.svgene-type-biosynthetic {
+    fill: @gene-type-biosynthetic;
+    stroke: black;
+}
+.svgene-type-transport {
+    fill: @gene-type-transport;
+    stroke: black;
+}
+.svgene-type-regulatory {
+    fill: @gene-type-regulatory;
+    stroke: black;
+}
+.svgene-line {
+    stroke-width: 1px;
+    stroke: #888;
+}
+.svgene-locustag {
+    fill: @antismash-red;
+    display: none;
+    font-size: 80%;
+}
+.svgene-tooltip {
+    .tooltip;
+}
+
+.svgene-tooltip-bold {
+    font-weight: bold;
+    font-size: 120%;
+}
