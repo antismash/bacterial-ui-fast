@@ -1,0 +1,4 @@
+
+<div uib-alert ng-class="'alert-danger'" ng-repeat="e in ctrl.errors" close="ctrl.close($index)">
+  <strong>{{e.teaser}}</strong> {{e.text}}
+</div>
