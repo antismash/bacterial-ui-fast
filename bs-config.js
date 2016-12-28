@@ -7,7 +7,7 @@ module.exports = {
   server: {
     baseDir: './dist',
     routes: {
-      '/output': '../output'
+      '/upload': '../output'
     },
     middleware: {
       1: proxyMiddleware('/api', {
