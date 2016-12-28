@@ -1,5 +1,6 @@
 angular.module('antismash.ui.bacterial.routing', [
   'ui.router',
+  'antismash.ui.bacterial.as_start'
 ]).config([
   '$stateProvider',
   '$urlRouterProvider',
@@ -9,7 +10,9 @@ angular.module('antismash.ui.bacterial.routing', [
     $stateProvider.
       state('start', {
         url: '/start',
-        templateUrl: 'start/start.html'
+        templateUrl: 'start/start.html',
+        controller: 'AsStartCtrl',
+        controllerAs: 'ctrl'
       }).
       state('show', {
         url: '/show',

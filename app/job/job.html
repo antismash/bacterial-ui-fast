@@ -1,0 +1,22 @@
+<div>
+  <h2>Status of job {{ctrl.job.filename}} analysis</h2>
+  <p>
+    Submitted: {{ctrl.job.submitted | date : 'MMM d, y HH:mm:ss'}}<br>
+    Status: {{ctrl.job.status}}<br>
+    Last status change: {{ctrl.job.last_changed | date : 'MMM d, y HH:mm:ss'}}<br>
+    <div class="result-link" ng-if="ctrl.job.short_status == 'done'">
+      See the <a ng-href="{{ctrl.job.result_url}}">results</a>.
+    </div>
+  </p>
+  <p ng-if="ctrl.job.short_status == 'removed'">
+    Your job has exceeded the maximum storage time and was removed.
+  </p>
+  <div ng-if="ctrl.job.short_status != 'removed'">
+    <p><b>Important:</b> If you did not provide an email address, please bookmark this page so you can access your antiSMASH
+      results later.</p>
+    <p>If you specified an email address on the job submission page, you will be notified by email once the job is complete.</p>
+    <p>Running antiSMASH on a complete genome will take a couple of hours, and depending on the server load it will take a while
+      for your job to start.</p>
+  </div>
+
+</div>
