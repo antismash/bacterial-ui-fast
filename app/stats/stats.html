@@ -1,9 +1,11 @@
 <ul class="list-group">
-  <li class="list-group-item">Server status: {{ctrl.stats.status}}</li>
-  <li class="list-group-item">Running jobs: {{ctrl.stats.running_jobs}}</li>
-  <li class="list-group-item">Queued jobs: {{ctrl.stats.queued_jobs}}</li>
-  <li class="list-group-item" ng-if="ctrl.stats.queued_jobs > 0">
-    <small>Oldest job in queue submitted {{ctrl.stats.ts_queued | timeAgo}}</small>
+  <li class="list-group-item">Server status: <span class="badge">{{ctrl.stats.status}}</span></li>
+  <li class="list-group-item">Running jobs: <span class="badge">{{ctrl.stats.running_jobs}}</span></li>
+  <li class="list-group-item">
+    Queued jobs: <span class="badge">{{ctrl.stats.queued_jobs}}</span>
+    <div ng-if="ctrl.stats.queued_jobs > 0">
+      <small>Oldest job in queue submitted {{ctrl.stats.ts_queued | timeAgo}}</small>
+    </div>
   </li>
-  <li class="list-group-item">Jobs processed: {{ctrl.stats.total_jobs}}</li>
+  <li class="list-group-item">Jobs processed: <span class="badge">{{ctrl.stats.total_jobs}}</span></li>
 </ul>
