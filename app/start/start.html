@@ -1,14 +1,147 @@
 <div class="container">
-<uib-tabset active="0">
-  <uib-tab index="0" heading="Nucleotide input">
-    DNA!
-  </uib-tab>
-  <uib-tab index="1" heading="Protein input">
-    Proteins!
-  </uib-tab>
-  <uib-tab index="2" heading="Results for existing job">
-    Existing job
-  </uib-tab>
-</uib>
+  <uib-tabset active="0">
+    <uib-tab index="0" heading="Nucleotide input">
+      <form name="nucleotideForm" class="form">
+        <div class="form-group row offset-top">
+          <div class="col-md-6">
+            Search a genome sequence for secondary metabolite biosynthetic gene clusters
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-default btn-block" ng-click="ctrl.loadSampleInput()">Load sample input</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-default btn-block">Open example output</button>
+          </div>
+        </div>
+        <fieldset>
+          <legend>Notification settings</legend>
+          <div class="form-group row">
+            <div class="col-md-4">
+              <input class="form-control" type="email" placeholder="your@email.com" ng-model="ctrl.email" id="email">
+            </div>
+            <label class="col-md-2" for="email">Email address (optional)</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Data input</legend>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <toggle-switch ng-model="ctrl.upload_file" on-label="Upload file" off-label="Get from NCBI" knob-label="Sequence source"></toggle-switch>
+            </div>
+            <div class="col-md-8" ng-show="ctrl.upload_file">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <input class="form-control" type="text" ng-model="ctrl.file.name" readonly>
+                  <span class="input-group-btn">
+                  <span class="btn btn-default btn-file"> Browse
+                    <input ng-model="ctrl.file" ngf-select type="file" id="seq"
+                           ngf-accept="ctrl.valid_endings" ngf-pattern="ctrl.valid_endings"> </span>
+                  </span>
+                </div>
+              </div>
+              <label for="seq" class="col-md-5">Sequence file (GenBank / EMBL / FASTA format)</label>
+            </div>
+            <div class="col-md-8" ng-hide="ctrl.upload_file">
+              <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="NCBI acc #" ng-model="ctrl.ncbi" id="ncbi">
+              </div>
+              <label for="ncbi" class="col-md-6">NCBI accession number of desired sequence</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Analysis options</legend>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label class="col-md-6">Limit region</label>
+              <div class="col-md-6">
+                <toggle-switch ng-model="ctrl.limit"></toggle-switch>
+              </div>
+              <p class="help-block">Ignored for multi-sequence inputs</p>
+            </div>
+            <div class="col-md-9" ng-show="ctrl.limit">
+              <label for="from" class="col-md-1">From:</label>
+              <div class="col-md-4">
+                <input class="form-control" type="number" placeholder="0" id="from" ng-model="ctrl.from">
+              </div>
+              <label for="to" class="col-md-1">To:</label>
+              <div class="col-md-4">
+                <input class="form-control" type="number" placeholder="0" id="to" ng-model="ctrl.to">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label class="col-md-6">ClusterFinder</label>
+              <div class="col-md-6">
+                <toggle-switch ng-model="ctrl.clusterfinder"></toggle-switch>
+              </div>
+              <p class="help-block">Probabilistic BGC detection</p>
+            </div>
+            <div class="col-md-9" ng-show="ctrl.clusterfinder">
+              <label for="cf_cdsnr" class="col-md-8">Minimum cluster size in CDS</label>
+              <div class="col-md-4">
+                <input class="form-control" type="number" placeholder="5" ng-model="ctrl.cf_cdsnr" id="cf_cdsnr">
+              </div>
+              <label for="cf_npfams" class="col-md-8">Minimum number of biosynthesis-related PFAM donains</label>
+              <div class="col-md-4">
+                <input class="form-control" type="number" placeholder="5" ng-model="ctrl.cf_npfams" id="cf_npfams">
+              </div>
+              <label for="cf_threshold" class="col-md-6">Minimum ClusterFinder probabiltiy:</label>
+              <div class="col-md-2">{{ctrl.cf_threshold * 100 | number : 0}} %</div>
+              <div class="col-md-4">
+                <input class="form-control" type="range" ng-model="ctrl.cf_threshold" id="cf_threshold" min="0.01" max="1" step="0.01">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Extra features</legend>
+          <div class="form-group row">
+            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.knownclusterblast">KnownClusterBlast</label></div>
+            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.clusterblast">ClusterBlast</label></div>
+            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.subclusterblast">SubClusterBlast</label></div>
+            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.smcog">smCoG analysis</label></div>
+            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.asf">ActiveSiteFinder</label></div>
+            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.tta">Detect TTA codons</label></div>
+            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.full_hmmer">Whole-genome PFAM analysis</label></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="form-group well row">
+            <div class="col-md-4 col-md-offset-4 ">
+              <button class="btn btn-primary btn-block" type="submit" ng-click="ctrl.submit(form)">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </uib-tab>
+<!--    <uib-tab index="1" heading="Protein input">
+      Proteins!
+    </uib-tab>-->
+    <uib-tab index="2" heading="Results for existing job">
+      <form name="existingJobForm" class="form" novalidate>
+        <div class="form-group offset-top">
+          <div class="row">
+            <label for="asID">antiSMASH job id for existing job</label>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="text" class="form-control" ng-model="ctrl.job_id" id="asID" name="asID" placeholder="taxon-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+                required ng-pattern="/^((bacteria|fungi|plants)-[0-F]{8}-[0-F]{4}-[0-F]{4}-[0-F]{4}-[0-F]{12}|example)$/i">
+              <i class="form-control-feedback fa fa-close" ng-show="existingJobForm.$error.pattern"></i>
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-primary btn-block" ng-click="ctrl.loadJob()" ng-disabled="existingJobForm.$invalid">Load</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </uib-tab>
+    </uib>
 
 </div>
