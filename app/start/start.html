@@ -114,7 +114,7 @@
         <fieldset>
           <div class="form-group well row">
             <div class="col-md-4 col-md-offset-4 ">
-              <button class="btn btn-primary btn-block" type="submit" ng-click="ctrl.submit(form)">Submit</button>
+              <button class="btn btn-primary btn-block" type="submit" ng-click="ctrl.submit(form)" ng-disabled="!ctrl.validJob()">Submit</button>
             </div>
           </div>
         </fieldset>
