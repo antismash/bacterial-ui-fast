@@ -1,7 +1,7 @@
 <div class="container">
   <uib-tabset active="0">
     <uib-tab index="0" heading="Nucleotide input">
-      <form name="nucleotideForm" class="form">
+      <form name="nucleotideForm" class="form" novalidate>
         <div class="form-group row offset-top">
           <div class="col-md-6">
             Search a genome sequence for secondary metabolite biosynthetic gene clusters
@@ -16,8 +16,11 @@
         <fieldset>
           <legend>Notification settings</legend>
           <div class="form-group row">
-            <div class="col-md-4">
+            <div class="col-md-4" ng-class="{'has-error': nucleotideForm.$error.email}">
               <input class="form-control" type="email" placeholder="your@email.com" ng-model="ctrl.email" id="email">
+              <p class="help-block" ng-show="nucleotideForm.$error.email">
+                <i class="fa fa-close"></i> Invalid email address.
+              </p>
             </div>
             <label class="col-md-2" for="email">Email address (optional)</label>
           </div>
@@ -114,7 +117,7 @@
         <fieldset>
           <div class="form-group well row">
             <div class="col-md-4 col-md-offset-4 ">
-              <button class="btn btn-primary btn-block" type="submit" ng-click="ctrl.submit(form)" ng-disabled="!ctrl.validJob()">Submit</button>
+              <button class="btn btn-primary btn-block" type="submit" ng-click="ctrl.submit(form)" ng-disabled="!ctrl.validJob() || !nucleotideForm.$valid">Submit</button>
             </div>
           </div>
         </fieldset>

@@ -17,11 +17,14 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
             vm.cf_threshold = 0.6;
 
             vm.submit = function (form) {
-
                 if (vm.upload_file) {
                     vm.submission.seq = vm.file;
                 } else {
                     vm.submission.ncbi = vm.ncbi;
+                }
+
+                if (vm.email) {
+                    vm.submission.email = vm.email;
                 }
 
                 if (vm.clusterfinder) {
