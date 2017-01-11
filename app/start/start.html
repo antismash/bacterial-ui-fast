@@ -102,15 +102,14 @@
         </fieldset>
 
         <fieldset>
-          <legend>Extra features</legend>
+          <legend>Extra features
+            <button class="btn btn-link" ng-click="ctrl.allOff()">All off</button>
+            <button class="btn btn-link" ng-click="ctrl.allOn()">All on</button>
+          </legend>
           <div class="form-group row">
-            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.knownclusterblast">KnownClusterBlast</label></div>
-            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.clusterblast">ClusterBlast</label></div>
-            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.subclusterblast">SubClusterBlast</label></div>
-            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.smcogs">smCoG analysis</label></div>
-            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.asf">ActiveSiteFinder</label></div>
-            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.tta">Detect TTA codons</label></div>
-            <div class="col-md-4"><label class="checkbox"><input type="checkbox" ng-model="ctrl.submission.fullhmmer">Whole-genome PFAM analysis</label></div>
+            <div class="col-md-4"  ng-repeat="c in ctrl.extra_features">
+              <label class="checkbox"><input type="checkbox" ng-model="ctrl.submission[c.id]">{{c.description}}</label>
+            </div>
           </div>
         </fieldset>
 

@@ -7,13 +7,24 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
 
             vm.valid_endings = '.gbk,.gb,.gbff,.emb,.embl,.fa,.fasta,.fna';
 
-            // Default values
-            vm.submission = {
-                knownclusterblast: true,
-                subclusterblast: true,
-                smcogs: true,
-                asf: true,
+            // Defaullt values
+            vm.submission = {};
+            vm.extra_features = [
+                { id: 'knownclusterblast', description: 'KnownClusterBlast', default: true },
+                { id: 'clusterblast', description: 'ClusterBlast', default: false },
+                { id: 'subclusterblast', description: 'SubClusterBlast', default: true },
+                { id: 'smcogs', description: 'smCoG analysis', default: true },
+                { id: 'asf', description: 'ActiveSiteFinder', default: true },
+                { id: 'tta', description: 'Detect TTA codons', default: false },
+                { id: 'transatpks_da', description: 'Align Trans-AT PKS domains', default: false },
+                { id: 'fullhmmer', description: 'Whole-genome PFAM analysis', default: false },
+            ];
+
+            for (var i = 0; i < vm.extra_features.length; i++) {
+                var feature = vm.extra_features[i];
+                vm.submission[feature.id] = feature.default;
             }
+
             vm.cf_threshold = 0.6;
 
             vm.submit = function (form) {
@@ -66,6 +77,20 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                     }
                 }
                 return true;
+            }
+
+            vm.allOff = function () {
+                for (var i = 0; i < vm.extra_features.length; i++) {
+                    var feature = vm.extra_features[i];
+                    vm.submission[feature.id] = false;
+                }
+            }
+
+            vm.allOn = function () {
+                for (var i = 0; i < vm.extra_features.length; i++) {
+                    var feature = vm.extra_features[i];
+                    vm.submission[feature.id] = true;
+                }
             }
 
             vm.loadSampleInput = function () {
