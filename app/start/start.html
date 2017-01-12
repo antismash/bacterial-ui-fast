@@ -29,7 +29,8 @@
           <legend>Data input</legend>
           <div class="form-group row">
             <div class="col-md-3">
-              <toggle-switch ng-model="ctrl.upload_file" on-label="Upload file" off-label="Get from NCBI" knob-label="Sequence source"></toggle-switch>
+              <toggle-switch ng-model="ctrl.upload_file" on-label="Upload file" off-label="Get from NCBI"
+              knob-label="{{ctrl.upload_file ? 'Get from NCBI' : 'Upload file'}}" class="switch-default"></toggle-switch>
             </div>
             <div class="col-md-8" ng-show="ctrl.upload_file">
               <div class="col-md-6">
