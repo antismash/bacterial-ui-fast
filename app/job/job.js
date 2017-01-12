@@ -35,8 +35,8 @@ angular.module('antismash.ui.bacterial.as_job', [])
                     job_info.status = resp.data.status;
                     job_info.short_status = resp.data.short_status;
                     job_info.result_url = resp.data.result_url;
-                    job_info.submitted = Date.parse(resp.data.added);
-                    job_info.last_changed = Date.parse(resp.data.last_changed);
+                    job_info.submitted = Date.parse(resp.data.added_ts);
+                    job_info.last_changed = Date.parse(resp.data.last_changed_ts);
                     if (job_info.short_status == "done" || job_info.short_status == "failed") {
                         return;
                     }
