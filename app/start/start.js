@@ -28,6 +28,8 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
             vm.cf_threshold = 0.6;
 
             vm.submit = function (form) {
+                vm.active_submission = true;
+
                 if (vm.upload_file) {
                     vm.submission.seq = vm.file;
                 } else {
@@ -54,8 +56,10 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                     url: '/api/v1.0/submit',
                     data: vm.submission,
                 }).then(function (resp) {
+                    vm.active_submission = false;
                     $state.go('show.job', { id: resp.data.id });
                 }, function (resp) {
+                    vm.active_submission = false;
                     console.log(resp);
                 }, function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
