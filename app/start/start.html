@@ -56,25 +56,6 @@
 
         <fieldset>
           <legend>Analysis options</legend>
-          <div class="form-group row">
-            <div class="col-md-3">
-              <label class="col-md-6">Limit region</label>
-              <div class="col-md-6">
-                <toggle-switch ng-model="ctrl.limit"></toggle-switch>
-              </div>
-              <p class="help-block">Ignored for multi-sequence inputs</p>
-            </div>
-            <div class="col-md-9" ng-show="ctrl.limit">
-              <label for="from" class="col-md-1">From:</label>
-              <div class="col-md-4">
-                <input class="form-control" type="number" placeholder="0" id="from" ng-model="ctrl.from">
-              </div>
-              <label for="to" class="col-md-1">To:</label>
-              <div class="col-md-4">
-                <input class="form-control" type="number" placeholder="0" id="to" ng-model="ctrl.to">
-              </div>
-            </div>
-          </div>
 
           <div class="form-group row">
             <div class="col-md-3">
