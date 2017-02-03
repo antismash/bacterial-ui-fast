@@ -2,7 +2,9 @@
   <h2>Status of job {{ctrl.job.filename}} analysis</h2>
   <p>
     Submitted: {{ctrl.job.submitted | date : 'MMM d, y HH:mm:ss'}}<br>
-    Status: {{ctrl.job.status}}<br>
+    Status:
+    <img ng-src="/images/{{ctrl.job.short_status}}.svg" width="16px">
+    {{ctrl.job.status}}<br>
     Last status change: {{ctrl.job.last_changed | date : 'MMM d, y HH:mm:ss'}}<br>
     <div class="result-link" ng-if="ctrl.job.short_status == 'done'">
       See the <a ng-href="{{ctrl.job.result_url}}">results</a>.
