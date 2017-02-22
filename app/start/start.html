@@ -30,7 +30,9 @@
           <div class="form-group row">
             <div class="col-md-3">
               <toggle-switch ng-model="ctrl.upload_file" on-label="Upload file" off-label="Get from NCBI"
-              knob-label="{{ctrl.upload_file ? 'Get from NCBI' : 'Upload file'}}" class="switch-default"></toggle-switch>
+                             knob-label="{{ctrl.upload_file ? 'Get from NCBI' : 'Upload file'}}"
+                             class="switch-default">
+              </toggle-switch>
             </div>
             <div class="col-md-8" ng-show="ctrl.upload_file">
               <div class="col-md-6">
@@ -43,7 +45,7 @@
                   </span>
                 </div>
               </div>
-              <label for="seq" class="col-md-5">Sequence file (GenBank / EMBL / FASTA format)</label>
+              <label for="seq" class="col-md-6">Sequence file (GenBank / EMBL / FASTA format)</label>
             </div>
             <div class="col-md-8" ng-hide="ctrl.upload_file">
               <div class="col-md-6">
@@ -51,6 +53,19 @@
               </div>
               <label for="ncbi" class="col-md-6">NCBI accession number of desired sequence</label>
             </div>
+          </div>
+          <div class="form-group row" ng-show="ctrl.showGffInput()">
+            <div class="col-md-7">
+              <div class="input-group">
+                <input class="form-control" type="text" ng-model="ctrl.gff_file.name" readonly>
+                <span class="input-group-btn">
+                  <span class="btn btn-default btn-file"> Browse
+                    <input ng-model="ctrl.gff_file" ngf-select type="file" id="gff"
+                           ngf-accept="ctrl.valid_gff_endings" ngf-pattern="ctrl.valid_gff_endings"> </span>
+                </span>
+              </div>
+            </div>
+            <label for="gff" class="col-md-5">Feature annotations (optional, GFF3 format)</label>
           </div>
         </fieldset>
 
@@ -89,7 +104,7 @@
             <button class="btn btn-link" ng-click="ctrl.allOn()">All on</button>
           </legend>
           <div class="form-group row">
-            <div class="col-md-4"  ng-repeat="c in ctrl.extra_features">
+            <div class="col-md-4" ng-repeat="c in ctrl.extra_features">
               <label class="checkbox"><input type="checkbox" ng-model="ctrl.submission[c.id]">{{c.description}}</label>
             </div>
           </div>
@@ -98,14 +113,13 @@
         <fieldset>
           <div class="form-group well row">
             <div class="col-md-4 col-md-offset-4 ">
-              <button class="btn btn-primary btn-block" type="submit" ng-click="ctrl.submit(form)"
-                      ng-disabled="!ctrl.validJob() || !nucleotideForm.$valid || ctrl.active_submission">Submit</button>
+              <button class="btn btn-primary btn-block" type="submit" ng-click="ctrl.submit(form)" ng-disabled="!ctrl.validJob() || !nucleotideForm.$valid || ctrl.active_submission">Submit</button>
             </div>
           </div>
         </fieldset>
       </form>
     </uib-tab>
-<!--    <uib-tab index="1" heading="Protein input">
+    <!--    <uib-tab index="1" heading="Protein input">
       Proteins!
     </uib-tab>-->
     <uib-tab index="2" heading="Results for existing job">
@@ -129,4 +143,4 @@
     </uib-tab>
     </uib>
 
-</div>
+    </div>

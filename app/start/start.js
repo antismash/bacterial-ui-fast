@@ -6,6 +6,7 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
             var vm = this;
 
             vm.valid_endings = '.gbk,.gb,.gbff,.emb,.embl,.fa,.fasta,.fna';
+            vm.valid_gff_endings = '.gff,.gff3';
 
             // Defaullt values
             vm.submission = {};
@@ -32,6 +33,9 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
 
                 if (vm.upload_file) {
                     vm.submission.seq = vm.file;
+                    if (vm.gff_file) {
+                        vm.submission.gff3 = vm.gff_file;
+                    }
                 } else {
                     vm.submission.ncbi = vm.ncbi;
                 }
@@ -63,6 +67,43 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                     }
                     console.log('progress: ' + progressPercentage + '% ' + evt.config.data.seq.name);
                 });
+            }
+
+            vm.isFastaFile = function (filename) {
+                const FASTA_ENDINGS = ['.fa', '.fna', '.fasta'];
+
+                // IE can't do endsWith()
+                if (!String.prototype.endsWith) {
+                    String.prototype.endsWith = function(search_string, position) {
+                        var subject = this.toString();
+                        if (typeof position !== 'number' || !isFinite(postion) || Math.floor(postion) !== postion || postion > subject.length) {
+                            postion = subject.length;
+                        }
+                        position -= search_string.length;
+                        var last_index = filename.lastIndexOf(search_string);
+                        return last_index !== -1 && last_index === position;
+                    }
+                }
+
+                for (var i in FASTA_ENDINGS) {
+                    var ending = FASTA_ENDINGS[i];
+                    if (filename.toLowerCase().endsWith(ending)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            vm.showGffInput = function () {
+                if (!vm.upload_file) {
+                    return false;
+                }
+
+                if (!vm.file || !vm.file.name) {
+                    return false;
+                }
+
+                return vm.isFastaFile(vm.file.name);
             }
 
             vm.validJob = function () {
