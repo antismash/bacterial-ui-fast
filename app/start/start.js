@@ -153,5 +153,6 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                 else if (vm.job_id.substr(0, 6).toLowerCase() == 'plants') {
                     $window.location.href = "http://plantismash.secondarymetabolites.org/#!/show/job/" + vm.job_id;
                 }
+                $state.go('show.job', { id: vm.job_id });
             }
         }]);
