@@ -1,6 +1,7 @@
 angular.module('antismash.ui.bacterial.routing', [
   'ui.router',
-  'antismash.ui.bacterial.as_start'
+  'antismash.ui.bacterial.as_start',
+  'antismash.ui.bacterial.as_contact'
 ]).config([
   '$stateProvider',
   '$urlRouterProvider',
@@ -38,6 +39,10 @@ angular.module('antismash.ui.bacterial.routing', [
       state('help', {
         url: '/help',
         templateUrl: 'help/help.html'
+      }).
+      state('contact', {
+        url: '/contact',
+        template: '<div class="wide-container"><as-contact></as-contact></div>'
       });
 
   }]);

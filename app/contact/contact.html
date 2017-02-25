@@ -1,0 +1,39 @@
+<div>
+  <form name="contactForm" class="form" novalidate ng-hide="$ctrl.sent_successfully || $ctrl.sending_failed">
+    <fieldset>
+      <legend>Contact us if you have questions or want to report a bug.</legend>
+      <div class="form-group row">
+        <label class="col-md-2" for="email">Email address</label>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-4" ng-class="{'has-error': contactForm.$error.email}">
+          <input class="form-control" type="email" placeholder="your@email.com" ng-model="$ctrl.email" id="email" required>
+          <p class="help-block" ng-show="contactForm.$error.email">
+            <i class="fa fa-close"></i> Invalid email address.
+          </p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2" for="message">Your message</label>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-8">
+          <textarea class="form-control" ng-model="$ctrl.message" id="message">
+          </textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-4">
+          <button class="btn btn-primary" type="submit" ng-disabled="$ctrl.invalidForm() || !contactForm.$valid" ng-click="$ctrl.sendEmail()">Send</button>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+  <div ng-show="$ctrl.sent_successfully">
+    Your message has been sent, thank you.
+  </div>
+  <div ng-show="$ctrl.sending_failed">
+    Sending your message failed. Please try again later.
+  </div>
+</div>
