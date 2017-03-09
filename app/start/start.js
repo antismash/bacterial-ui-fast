@@ -74,7 +74,7 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
             }
 
             vm.isFastaFile = function (filename) {
-                const FASTA_ENDINGS = ['.fa', '.fna', '.fasta'];
+                var FASTA_ENDINGS = ['.fa', '.fna', '.fasta'];
 
                 // IE can't do endsWith()
                 if (!String.prototype.endsWith) {
