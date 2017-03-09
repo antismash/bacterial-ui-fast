@@ -11,14 +11,14 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
             // Defaullt values
             vm.submission = {};
             vm.extra_features = [
-                { id: 'knownclusterblast', description: 'KnownClusterBlast', default: true },
-                { id: 'clusterblast', description: 'ClusterBlast', default: false },
-                { id: 'subclusterblast', description: 'SubClusterBlast', default: true },
-                { id: 'smcogs', description: 'smCoG analysis', default: true },
-                { id: 'asf', description: 'ActiveSiteFinder', default: true },
-                { id: 'tta', description: 'Detect TTA codons', default: false },
+                { id: 'knownclusterblast', description: 'KnownClusterBlast', default: true, legacy: true},
+                { id: 'clusterblast', description: 'ClusterBlast', default: false, legacy: true },
+                { id: 'subclusterblast', description: 'SubClusterBlast', default: true, legacy: true },
+                { id: 'smcogs', description: 'smCoG analysis', default: true, legacy: true },
+                { id: 'asf', description: 'ActiveSiteFinder', default: true, legacy: true },
+                { id: 'tta', description: 'Detect TTA codons', default: false, legacy: false },
                 { id: 'transatpks_da', description: 'Align Trans-AT PKS domains', default: false },
-                { id: 'fullhmmer', description: 'Whole-genome PFAM analysis', default: false },
+                { id: 'fullhmmer', description: 'Whole-genome PFAM analysis', default: false, legacy: true },
             ];
 
             for (var i = 0; i < vm.extra_features.length; i++) {
@@ -38,6 +38,10 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                     }
                 } else {
                     vm.submission.ncbi = vm.ncbi;
+                }
+
+                if (vm.legacy) {
+                    vm.submission.legacy = true;
                 }
 
                 if (vm.email) {
