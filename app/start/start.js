@@ -30,6 +30,7 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
 
             vm.submit = function (form) {
                 vm.active_submission = true;
+                vm.errror_message = null;
 
                 if (vm.upload_file) {
                     vm.submission.seq = vm.file;
@@ -63,6 +64,11 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                     $state.go('show.job', { id: resp.data.id });
                 }, function (resp) {
                     vm.active_submission = false;
+                    var full_message = "Job submission failed.";
+                    if (resp.data.message) {
+                        full_message += " The error message was: " + resp.data.message;
+                    }
+                    vm.error_message = full_message;
                     console.log(resp);
                 }, function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
