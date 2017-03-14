@@ -84,7 +84,7 @@
               <p class="help-block">Probabilistic BGC detection</p>
             </div>
             <div class="col-md-9">
-              <div ng-hide="ctrl.clusterfinder">
+              <div ng-hide="ctrl.clusterfinder || ctrl.legacy">
                 <label class="col-md-offset-2 col-md-6">Use ClusterFinder algorithm for BGC border prediction</label>
                 <div class="col-md-4">
                   <toggle-switch ng-model="ctrl.borderpredict"></toggle-switch>
@@ -92,9 +92,11 @@
               </div>
 
               <div ng-show="ctrl.clusterfinder">
-                <label class="col-md-8">Use ClusterFinder algorithm for BGC border prediction</label>
-                <div class="col-md-4">
-                  <toggle-switch ng-model="ctrl.borderpredict"></toggle-switch>
+                <div ng-hide="ctrl.legacy">
+                  <label class="col-md-8">Use ClusterFinder algorithm for BGC border prediction</label>
+                  <div class="col-md-4">
+                    <toggle-switch ng-model="ctrl.borderpredict"></toggle-switch>
+                  </div>
                 </div>
                 <label for="cf_cdsnr" class="col-md-8">Minimum cluster size in CDS</label>
                 <div class="col-md-4">
