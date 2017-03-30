@@ -27,6 +27,7 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
             }
 
             vm.cf_threshold = 0.6;
+            vm.genefinder = 'prodigal';
 
             vm.submit = function (form) {
                 vm.active_submission = true;
@@ -36,6 +37,8 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                     vm.submission.seq = vm.file;
                     if (vm.gff_file) {
                         vm.submission.gff3 = vm.gff_file;
+                    } else {
+                        vm.submission.genefinder = vm.genefinder;
                     }
                 } else {
                     vm.submission.ncbi = vm.ncbi;
@@ -168,5 +171,17 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                     $window.location.href = "http://plantismash.secondarymetabolites.org/#!/show/job/" + vm.job_id;
                 }
                 $state.go('show.job', { id: vm.job_id });
+            }
+
+            vm.clearGff = function () {
+                if (vm.genefinder == 'prodigal' || vm.genefinder == 'prodigal-m' ) {
+                    vm.gff_file = null;
+                }
+            }
+
+            vm.gffFileChanged = function(file) {
+                if(file) {
+                    vm.genefinder = 'none';
+                }
             }
         }]);
