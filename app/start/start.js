@@ -37,6 +37,7 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                     vm.submission.seq = vm.file;
                     if (vm.gff_file) {
                         vm.submission.gff3 = vm.gff_file;
+                        vm.submission.genefinder = 'none';
                     } else {
                         vm.submission.genefinder = vm.genefinder;
                     }
@@ -174,14 +175,6 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
             }
 
             vm.clearGff = function () {
-                if (vm.genefinder == 'prodigal' || vm.genefinder == 'prodigal-m' ) {
-                    vm.gff_file = null;
-                }
-            }
-
-            vm.gffFileChanged = function(file) {
-                if(file) {
-                    vm.genefinder = 'none';
-                }
+                vm.gff_file = null;
             }
         }]);

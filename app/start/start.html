@@ -60,10 +60,13 @@
           <div class="form-group row" ng-show="ctrl.showGffInput()">
             <div class="col-md-7">
               <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button"><i class="fa fa-trash" ng-click="ctrl.clearGff()"></i></button>
+                </span>
                 <input class="form-control" type="text" ng-model="ctrl.gff_file.name" readonly>
                 <span class="input-group-btn">
                   <span class="btn btn-default btn-file"> Browse
-                    <input ng-model="ctrl.gff_file" ngf-select="ctrl.gffFileChanged($file)" type="file" id="gff"
+                    <input ng-model="ctrl.gff_file" ngf-select type="file" id="gff"
                            ngf-accept="ctrl.valid_gff_endings" ngf-pattern="ctrl.valid_gff_endings"> </span>
                 </span>
               </div>
@@ -74,9 +77,8 @@
             <div class="col-md-8 col-md-offset-3">
               <div class="col-md-6">
                 <div class="btn-group btn-group-justified">
-                  <label class="btn btn-default" ng-model="ctrl.genefinder" uib-btn-radio="'none'">None</label>
-                  <label class="btn btn-default" ng-model="ctrl.genefinder" uib-btn-radio="'prodigal'" ng-click="ctrl.clearGff()">Prodigal</label>
-                  <label class="btn btn-default" ng-model="ctrl.genefinder" uib-btn-radio="'prodigal-m'" ng-click="ctrl.clearGff()">Metagenome</label>
+                  <label class="btn btn-default" ng-model="ctrl.genefinder" uib-btn-radio="'prodigal'" ng-disabled="ctrl.gff_file">Prodigal</label>
+                  <label class="btn btn-default" ng-model="ctrl.genefinder" uib-btn-radio="'prodigal-m'" ng-disabled="ctrl.gff_file">Metagenome</label>
                 </div>
               </div>
               <label class="col-md-5">Gene finder to use (if not providing a GFF3 file)</label>
