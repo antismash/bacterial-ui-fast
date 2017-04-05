@@ -64,7 +64,20 @@ antiSMASH is powered by several open source tools: <a
 
   <div class="row">
     <h3>Contributions</h3>
-    The antiSMASH project is supported by the work of many different institutions:
-    <strong>TODO: LOGOS HERE</strong>
+    <div class="col-md-12">
+      The antiSMASH project is supported by the work of many different institutions:
+    </div>
+
+    <div ng-repeat="l in ctrl.logos" class="media col-md-6">
+      <div class="media-left media-middle">
+        <div class="contributor-logo-box">
+          <img class="media-object contributor-logo" ng-src="images/logos/{{l.filename}}" alt="{{l.description}}">
+        </div>
+      </div>
+      <div class="media-body">
+        {{l.description}}
+      </div>
+    </div>
+
   </div>
 </div>

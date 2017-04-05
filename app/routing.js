@@ -1,5 +1,6 @@
 angular.module('antismash.ui.bacterial.routing', [
   'ui.router',
+  'antismash.ui.bacterial.as_about',
   'antismash.ui.bacterial.as_start',
   'antismash.ui.bacterial.as_contact'
 ]).config([
@@ -34,7 +35,9 @@ angular.module('antismash.ui.bacterial.routing', [
       }).
       state('about', {
         url: '/about',
-        templateUrl: 'about/about.html'
+        templateUrl: 'about/about.html',
+        controller: 'AsAboutCtrl',
+        controllerAs: 'ctrl'
       }).
       state('help', {
         url: '/help',
