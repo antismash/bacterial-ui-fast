@@ -73,7 +73,7 @@
             </div>
             <label for="gff" class="col-md-5">Feature annotations (optional, GFF3 format)</label>
           </div>
-          <div class="form-group row" ng-show="ctrl.showGffInput($file)">
+          <div class="form-group row" ng-show="ctrl.showGeneFinder()">
             <div class="col-md-8 col-md-offset-3">
               <div class="col-md-6">
                 <div class="btn-group btn-group-justified">
@@ -81,7 +81,7 @@
                   <label class="btn btn-default" ng-model="ctrl.genefinder" uib-btn-radio="'prodigal-m'" ng-disabled="ctrl.gff_file">Metagenome</label>
                 </div>
               </div>
-              <label class="col-md-5">Gene finder to use (if not providing a GFF3 file)</label>
+              <label class="col-md-5">Gene finder to use <span ng-show="ctrl.showGffInput()">(if not providing a GFF3 file)</span></label>
             </div>
           </div>
         </fieldset>

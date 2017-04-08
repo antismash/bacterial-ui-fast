@@ -35,7 +35,7 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
 
                 if (vm.upload_file) {
                     vm.submission.seq = vm.file;
-                    if (vm.gff_file) {
+                    if (vm.gff_file && !vm.legacy) {
                         vm.submission.gff3 = vm.gff_file;
                         vm.submission.genefinder = 'none';
                     } else {
@@ -113,6 +113,13 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
             }
 
             vm.showGffInput = function () {
+                if (vm.legacy) {
+                    return false;
+                }
+                return vm.showGeneFinder();
+            }
+
+            vm.showGeneFinder = function () {
                 if (!vm.upload_file) {
                     return false;
                 }
