@@ -44,6 +44,15 @@ angular.module('antismash.ui.bacterial.as_job', [])
                     loadNext();
                 })
                 .catch(function (resp) {
+                    if (resp.status == 404) {
+                        job_info.filename = '';
+                        job_info.result_url = '';
+                        job_info.submitted = null;
+                        job_info.last_changed = null;
+                        job_info.short_status = "404";
+                        job_info.status = "No job found with ID '" + job_id + "'. Please check the ID and try again.";
+                        return;
+                    }
                     job_info.status = "Error loading stats"
                     errorCount += 1;
                     loadNext(errorCount * 2 * delay);
