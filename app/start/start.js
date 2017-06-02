@@ -17,7 +17,7 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                 { id: 'smcogs', description: 'smCoG analysis', default: true, legacy: true },
                 { id: 'asf', description: 'ActiveSiteFinder', default: true, legacy: true },
                 { id: 'tta', description: 'Detect TTA codons', default: false, legacy: false },
-                { id: 'transatpks_da', description: 'Align Trans-AT PKS domains', default: false },
+                //{ id: 'transatpks_da', description: 'Align Trans-AT PKS domains', default: false },
                 { id: 'fullhmmer', description: 'Whole-genome PFAM analysis', default: false, legacy: true },
             ];
 
