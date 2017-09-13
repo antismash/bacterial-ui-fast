@@ -1,5 +1,5 @@
 {
-  "name": "antismash-bacterial-ui",
+  "name": "antismash-bacterial-ui-fast",
   "version": "4.0.0",
   "description": "A web UI for antiSMASH",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/antismash/bacterial-ui.git"
+    "url": "git://github.com/antismash/bacterial-ui-fast.git"
   },
   "keywords": [
     "antiSMASH"
@@ -17,9 +17,9 @@
   "author": "Kai Blin <kblin@biosustain.dtu.dk>",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/antismash/bacterial-ui/issues"
+    "url": "https://github.com/antismash/bacterial-ui-fast/issues"
   },
-  "homepage": "https://github.com/antismash/bacterial-ui#readme",
+  "homepage": "https://github.com/antismash/bacterial-ui-fast#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",

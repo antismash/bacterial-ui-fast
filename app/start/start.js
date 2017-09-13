@@ -9,24 +9,10 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
             vm.valid_gff_endings = '.gff,.gff3';
 
             // Defaullt values
-            vm.submission = {};
-            vm.extra_features = [
-                { id: 'knownclusterblast', description: 'KnownClusterBlast', default: true, legacy: true},
-                { id: 'clusterblast', description: 'ClusterBlast', default: false, legacy: true },
-                { id: 'subclusterblast', description: 'SubClusterBlast', default: true, legacy: true },
-                { id: 'smcogs', description: 'smCoG analysis', default: true, legacy: true },
-                { id: 'asf', description: 'ActiveSiteFinder', default: true, legacy: true },
-                { id: 'tta', description: 'Detect TTA codons', default: false, legacy: false },
-                //{ id: 'transatpks_da', description: 'Align Trans-AT PKS domains', default: false },
-                { id: 'fullhmmer', description: 'Whole-genome PFAM analysis', default: false, legacy: true },
-            ];
+            vm.submission = {
+                minimal: true
+            };
 
-            for (var i = 0; i < vm.extra_features.length; i++) {
-                var feature = vm.extra_features[i];
-                vm.submission[feature.id] = feature.default;
-            }
-
-            vm.cf_threshold = 0.6;
             vm.genefinder = 'prodigal';
 
             vm.submit = function (form) {
@@ -45,23 +31,8 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                     vm.submission.ncbi = vm.ncbi;
                 }
 
-                if (vm.legacy) {
-                    vm.submission.legacy = true;
-                }
-
                 if (vm.email) {
                     vm.submission.email = vm.email;
-                }
-
-                if (vm.clusterfinder) {
-                    vm.submission.inclusive = true;
-                    vm.submission.cf_threshold = vm.cf_threshold;
-                    vm.submission.cf_cdsnr = vm.cf_cdsnr;
-                    vm.submission.cf_npfams = vm.cf_npfams;
-                }
-
-                if (vm.borderpredict) {
-                    vm.submission.borderpredict = true;
                 }
 
                 Upload.upload({
@@ -144,27 +115,13 @@ angular.module('antismash.ui.bacterial.as_start', ['ngFileUpload'])
                 return true;
             }
 
-            vm.allOff = function () {
-                for (var i = 0; i < vm.extra_features.length; i++) {
-                    var feature = vm.extra_features[i];
-                    vm.submission[feature.id] = false;
-                }
-            }
-
-            vm.allOn = function () {
-                for (var i = 0; i < vm.extra_features.length; i++) {
-                    var feature = vm.extra_features[i];
-                    vm.submission[feature.id] = true;
-                }
-            }
-
             vm.loadSampleInput = function () {
                 vm.upload_file = false;
                 vm.ncbi = "Y16952";
             }
 
             vm.openSampleOutput = function () {
-                $window.location.href = "/upload/example/index.html";
+                $window.location.href = "/upload/example_fast/index.html";
             }
 
             vm.loadJob = function () {

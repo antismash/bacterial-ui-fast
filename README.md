@@ -1,7 +1,7 @@
-antiSMASH web UI (bacterial)
-============================
+antiSMASH web UI (bacterial fast mode)
+======================================
 
-A web UI for the bacterial version of antiSMASH.
+A web UI for the fast mode of the bacterial version of antiSMASH.
 
 License
 -------

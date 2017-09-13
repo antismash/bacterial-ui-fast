@@ -21,8 +21,10 @@ angular.module('antismash.ui.bacterial.as_stats', [])
         var stats = {
             status: "Loading",
             running_jobs: 0,
+            fast_jobs: 0,
             queued_jobs: 0,
             ts_queued: "",
+            ts_fast: "",
             total_jobs: 0
         }
 
@@ -31,9 +33,11 @@ angular.module('antismash.ui.bacterial.as_stats', [])
                 .then(function (resp) {
                     stats.status = resp.data.status;
                     stats.running_jobs = resp.data.running;
+                    stats.fast_jobs = resp.data.fast;
                     stats.queued_jobs = resp.data.queue_length;
                     stats.total_jobs = resp.data.total_jobs;
                     stats.ts_queued = resp.data.ts_queued_m;
+                    stats.ts_fast = resp.data.ts_fast_m;
                     loadNext();
                 })
                 .catch(function (resp) {
